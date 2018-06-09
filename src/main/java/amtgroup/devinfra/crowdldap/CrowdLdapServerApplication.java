@@ -9,4 +9,5 @@ public class CrowdLdapServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(CrowdLdapServerApplication.class, args);
     }
+
 }

@@ -1,12 +1,9 @@
 package amtgroup.devinfra.crowdldap.util.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 /**
  * @author Vitaly Ogoltsov
  */
-@ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
+@SuppressWarnings("unused")
 public class NotImplementedException extends ApplicationException {
 
     public NotImplementedException() {

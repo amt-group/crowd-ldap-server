@@ -1,0 +1,12 @@
+crowd:
+  client:
+    server:
+      url: https://crowd.example.com/crowd/
+    application:
+      name: crowd-ldap-server-test
+      password: Xb3-SRZ-79S-RVk
+      loginUrl: https://crowd.example.com/
+ldap:
+  server:
+    port: 10389
+

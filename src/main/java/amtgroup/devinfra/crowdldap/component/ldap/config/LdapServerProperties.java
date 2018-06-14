@@ -13,7 +13,7 @@ public class LdapServerProperties {
     /**
      * Порт для подключения к серверу.
      */
-    private int port = 389;
+    private int port = 10389;
 
     /**
      * Включить эмуляцию работы атрибута memberOf в Active Directory.

@@ -1,6 +1,7 @@
 package amtgroup.devinfra.crowdldap.component.ldap.config;
 
 import amtgroup.devinfra.crowdldap.component.ldap.exception.LdapSchemaLoadException;
+import amtgroup.devinfra.crowdldap.component.ldap.util.SpringSchemaLdifExtractor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -14,10 +15,8 @@ import org.apache.directory.server.core.partition.ldif.LdifPartition;
 import org.apache.directory.server.core.schema.SchemaPartition;
 import org.apache.directory.server.ldap.LdapServer;
 import org.apache.directory.server.protocol.shared.transport.TcpTransport;
-import org.apache.directory.server.protocol.shared.transport.Transport;
 import org.apache.directory.shared.ldap.schema.SchemaManager;
 import org.apache.directory.shared.ldap.schema.ldif.extractor.SchemaLdifExtractor;
-import org.apache.directory.shared.ldap.schema.ldif.extractor.impl.DefaultSchemaLdifExtractor;
 import org.apache.directory.shared.ldap.schema.loader.ldif.LdifSchemaLoader;
 import org.apache.directory.shared.ldap.schema.manager.impl.DefaultSchemaManager;
 import org.apache.directory.shared.ldap.schema.registries.SchemaLoader;
@@ -64,7 +63,7 @@ public class LdapServerConfiguration {
     public SchemaManager schemaManager(LdapServerProperties ldapServerProperties) throws Exception {
 
         // извлечь файлы схем
-        SchemaLdifExtractor extractor = new DefaultSchemaLdifExtractor(getWorkingDirectory());
+        SchemaLdifExtractor extractor = new SpringSchemaLdifExtractor(getWorkingDirectory());
         extractor.extractOrCopy(true);
         // настроить работу атрибута memberOf
         if (ldapServerProperties.isMemberOfEmulateActiveDirectory()) {

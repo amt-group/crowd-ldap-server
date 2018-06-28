@@ -25,4 +25,9 @@ public class CrowdLdapProperties {
      */
     private boolean memberOfIncludeNested = false;
 
+    /**
+     * Время жизни кеша.
+     */
+    private Integer cacheTtl = 60 * 60 * 1000;
+
 }

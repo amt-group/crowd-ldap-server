@@ -91,7 +91,7 @@ class CrowdLdapUserRepository {
         }
     }
 
-    @Scheduled(fixedRate = 15000L)
+    @Scheduled(fixedRateString = "${crowdldap.cache-ttl:3600000}")
     @CacheEvict(cacheNames = "crowd.users")
     public void flushCache() {
         log.debug("Очистка кеша.");

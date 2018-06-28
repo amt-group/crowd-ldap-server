@@ -14,9 +14,16 @@ import java.util.Locale;
  * @author Vitaly Ogoltsov
  */
 @Component
-final class ExceptionMessageUtils {
+public final class ExceptionMessageUtils {
 
     private static MessageSource messageSource;
+
+    /**
+     * Возвращает локализованное сообщение об ошибке, используя источник сообщений по умолчанию.
+     */
+    public static String getMessage(String code) {
+        return getMessage(messageSource, code, ArrayUtils.EMPTY_OBJECT_ARRAY, Locale.getDefault());
+    }
 
     /**
      * Возвращает локализованное сообщение об ошибке, используя источник сообщений по умолчанию.

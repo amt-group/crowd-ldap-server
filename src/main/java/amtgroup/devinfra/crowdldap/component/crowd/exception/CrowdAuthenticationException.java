@@ -5,9 +5,9 @@ import amtgroup.devinfra.crowdldap.util.exception.ApplicationException;
 /**
  * @author Vitaly Ogoltsov
  */
-public class CrowdLdapAuthenticationException extends ApplicationException {
+public class CrowdAuthenticationException extends ApplicationException {
 
-    public CrowdLdapAuthenticationException(String username) {
+    public CrowdAuthenticationException(String username) {
         super(username);
     }
 

@@ -1,8 +1,8 @@
-package amtgroup.devinfra.crowdldap.component.crowd.query;
+package amtgroup.devinfra.crowdldap.component.crowdldap;
 
-import amtgroup.devinfra.crowdldap.component.crowdldap.config.CrowdLdapProperties;
-import amtgroup.devinfra.crowdldap.component.crowd.query.util.CrowdLdapConstants;
-import amtgroup.devinfra.crowdldap.component.crowd.query.util.CrowdLdapFilter;
+import amtgroup.devinfra.crowdldap.component.crowd.config.CrowdLdapProperties;
+import amtgroup.devinfra.crowdldap.component.crowd.util.CrowdLdapConstants;
+import amtgroup.devinfra.crowdldap.component.crowd.util.CrowdLdapFilter;
 import amtgroup.devinfra.crowdldap.util.exception.ExceptionMessageUtils;
 import lombok.Getter;
 import lombok.Setter;

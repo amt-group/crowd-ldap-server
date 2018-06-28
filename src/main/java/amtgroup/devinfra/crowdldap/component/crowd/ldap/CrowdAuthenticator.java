@@ -1,9 +1,9 @@
 package amtgroup.devinfra.crowdldap.component.crowdldap;
 
-import amtgroup.devinfra.crowdldap.component.crowdldap.config.CrowdLdapProperties;
-import amtgroup.devinfra.crowdldap.component.crowdldap.exception.CrowdAuthenticationException;
-import amtgroup.devinfra.crowdldap.component.crowdldap.exception.CrowdLdapException;
-import amtgroup.devinfra.crowdldap.component.crowd.query.util.CrowdLdapConstants;
+import amtgroup.devinfra.crowdldap.component.crowd.config.CrowdLdapProperties;
+import amtgroup.devinfra.crowdldap.component.crowd.exception.CrowdAuthenticationException;
+import amtgroup.devinfra.crowdldap.component.crowd.exception.CrowdLdapException;
+import amtgroup.devinfra.crowdldap.component.crowd.util.CrowdLdapConstants;
 import com.atlassian.crowd.model.user.User;
 import com.atlassian.crowd.service.client.CrowdClient;
 import lombok.extern.slf4j.Slf4j;

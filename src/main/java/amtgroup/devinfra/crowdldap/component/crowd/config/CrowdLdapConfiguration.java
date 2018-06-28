@@ -1,4 +1,4 @@
-package amtgroup.devinfra.crowdldap.component.crowdldap.config;
+package amtgroup.devinfra.crowdldap.component.crowd.config;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

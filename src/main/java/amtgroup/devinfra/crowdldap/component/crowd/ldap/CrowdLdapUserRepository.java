@@ -1,9 +1,9 @@
-package amtgroup.devinfra.crowdldap.component.crowd.query;
+package amtgroup.devinfra.crowdldap.component.crowdldap;
 
+import amtgroup.devinfra.crowdldap.component.crowd.config.CrowdLdapProperties;
+import amtgroup.devinfra.crowdldap.component.crowd.exception.CrowdLdapException;
 import amtgroup.devinfra.crowdldap.component.crowd.exception.CrowdRemoteException;
-import amtgroup.devinfra.crowdldap.component.crowdldap.config.CrowdLdapProperties;
-import amtgroup.devinfra.crowdldap.component.crowdldap.exception.CrowdLdapException;
-import amtgroup.devinfra.crowdldap.component.crowd.query.util.CrowdLdapConstants;
+import amtgroup.devinfra.crowdldap.component.crowd.util.CrowdLdapConstants;
 import com.atlassian.crowd.model.user.User;
 import com.atlassian.crowd.search.query.entity.restriction.NullRestrictionImpl;
 import com.atlassian.crowd.service.client.CrowdClient;
@@ -63,7 +63,7 @@ class CrowdLdapUserRepository {
         }
     }
 
-    public ServerEntry findOne(RDN rdn) {
+    ServerEntry findOne(RDN rdn) {
         return findAll()
                 .stream()
                 .filter(user -> StringUtils.equalsIgnoreCase(user.getDn().getRdn().getName(), rdn.getName()))
@@ -75,12 +75,12 @@ class CrowdLdapUserRepository {
         try {
             ServerEntry userEntry = new DefaultServerEntry(
                     directoryService.getSchemaManager(),
-                    new DN().addAll(usersDn).add(new RDN(SchemaConstants.UID_AT, user.getName()))
+                    new DN().addAll(usersDn).add(new RDN(CrowdLdapConstants.USER_ID_AT, user.getName()))
             );
             userEntry.put(SchemaConstants.OBJECT_CLASS, SchemaConstants.INET_ORG_PERSON_OC);
             userEntry.put(SchemaConstants.OBJECT_CLASS_AT, SchemaConstants.TOP_OC, SchemaConstants.ORGANIZATIONAL_PERSON_OC, SchemaConstants.PERSON_OC, SchemaConstants.INET_ORG_PERSON_OC);
             userEntry.put(SchemaConstants.CN_AT, user.getDisplayName());
-            userEntry.put(SchemaConstants.UID_AT, user.getName());
+            userEntry.put(CrowdLdapConstants.USER_ID_AT, user.getName());
             userEntry.put("mail", user.getEmailAddress());
             userEntry.put("givenname", user.getFirstName());
             userEntry.put(SchemaConstants.SN_AT, user.getLastName());

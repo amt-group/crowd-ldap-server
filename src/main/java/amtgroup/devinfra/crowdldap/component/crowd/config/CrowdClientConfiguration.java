@@ -1,4 +1,4 @@
-package amtgroup.devinfra.crowdldap.component.crowd.client.config;
+package amtgroup.devinfra.crowdldap.component.crowd.config;
 
 import com.atlassian.crowd.integration.rest.service.factory.RestCrowdClientFactory;
 import com.atlassian.crowd.service.client.ClientProperties;

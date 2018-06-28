@@ -1,4 +1,4 @@
-package amtgroup.devinfra.crowdldap.component.crowd.client.config;
+package amtgroup.devinfra.crowdldap.component.crowd.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

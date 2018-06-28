@@ -1,4 +1,4 @@
-package amtgroup.devinfra.crowdldap.component.crowdldap.exception;
+package amtgroup.devinfra.crowdldap.component.crowd.exception;
 
 import amtgroup.devinfra.crowdldap.util.exception.ApplicationException;
 

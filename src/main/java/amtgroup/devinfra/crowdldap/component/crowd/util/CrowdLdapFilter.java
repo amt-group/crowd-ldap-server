@@ -12,6 +12,7 @@ import org.apache.directory.shared.ldap.filter.GreaterEqNode;
 import org.apache.directory.shared.ldap.filter.LessEqNode;
 import org.apache.directory.shared.ldap.filter.NotNode;
 import org.apache.directory.shared.ldap.filter.OrNode;
+import org.apache.directory.shared.ldap.filter.PresenceNode;
 import org.springframework.stereotype.Component;
 
 import java.util.Iterator;
@@ -52,6 +53,9 @@ public class CrowdLdapFilter {
         } else if (filter instanceof NotNode) {
             return of(((NotNode) filter).getFirstChild())
                     .map(Predicate::negate);
+        } else if (filter instanceof PresenceNode) {
+            PresenceNode node = (PresenceNode) filter;
+            return Optional.of(exists(node.getAttribute()));
         } else if (filter instanceof EqualityNode) {
             EqualityNode node = (EqualityNode) filter;
             return Optional.of(eq(node.getAttribute(), node.getValue()));
@@ -66,6 +70,10 @@ public class CrowdLdapFilter {
         return Optional.empty();
     }
 
+
+    private Predicate<ServerEntry> exists(String attributeName) {
+        return e -> e.get(attributeName) != null;
+    }
 
     private Predicate<ServerEntry> eq(String attributeName, Value attributeValue) {
         return e -> {

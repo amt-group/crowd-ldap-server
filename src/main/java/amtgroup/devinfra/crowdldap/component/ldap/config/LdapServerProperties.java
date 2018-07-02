@@ -15,9 +15,4 @@ public class LdapServerProperties {
      */
     private int port = 10389;
 
-    /**
-     * Включить эмуляцию работы атрибута memberOf в Active Directory.
-     */
-    private boolean memberOfEmulateActiveDirectory = false;
-
 }

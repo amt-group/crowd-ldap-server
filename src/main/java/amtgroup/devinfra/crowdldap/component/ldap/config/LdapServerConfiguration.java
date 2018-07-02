@@ -66,24 +66,22 @@ public class LdapServerConfiguration {
         SchemaLdifExtractor extractor = new SpringSchemaLdifExtractor(getWorkingDirectory());
         extractor.extractOrCopy(true);
         // настроить работу атрибута memberOf
-        if (ldapServerProperties.isMemberOfEmulateActiveDirectory()) {
-            File attributeTypesDir = new File(getWorkingDirectory(), "schema/ou=schema/cn=other/ou=attributetypes");
-            if (!attributeTypesDir.exists()) {
-                if (!attributeTypesDir.mkdirs()) {
-                    throw new RuntimeException("Ошибка создания директории типов атрибутов: " + attributeTypesDir.getAbsolutePath());
-                }
-                File memberOfLDIF = new File(attributeTypesDir, "m-oid=1.2.840.113556.1.2.102.ldif");
-                if (!memberOfLDIF.exists()) {
-                    InputStream in = null;
-                    OutputStream out = null;
-                    try {
-                        in = getClass().getClassLoader().getResourceAsStream("ldap/memberOf.ldif");
-                        out = new FileOutputStream(memberOfLDIF);
-                        IOUtils.copy(in, out);
-                    } finally {
-                        IOUtils.closeQuietly(in);
-                        IOUtils.closeQuietly(out);
-                    }
+        File attributeTypesDir = new File(getWorkingDirectory(), "schema/ou=schema/cn=other/ou=attributetypes");
+        if (!attributeTypesDir.exists()) {
+            if (!attributeTypesDir.mkdirs()) {
+                throw new RuntimeException("Ошибка создания директории типов атрибутов: " + attributeTypesDir.getAbsolutePath());
+            }
+            File memberOfLDIF = new File(attributeTypesDir, "m-oid=1.2.840.113556.1.2.102.ldif");
+            if (!memberOfLDIF.exists()) {
+                InputStream in = null;
+                OutputStream out = null;
+                try {
+                    in = getClass().getClassLoader().getResourceAsStream("ldap/memberOf.ldif");
+                    out = new FileOutputStream(memberOfLDIF);
+                    IOUtils.copy(in, out);
+                } finally {
+                    IOUtils.closeQuietly(in);
+                    IOUtils.closeQuietly(out);
                 }
             }
         }

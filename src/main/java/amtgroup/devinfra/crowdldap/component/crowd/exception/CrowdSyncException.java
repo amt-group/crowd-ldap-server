@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author Vitaly Ogoltsov
  */
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class CrowdRemoteException extends ApplicationException {
+public class CrowdSyncException extends ApplicationException {
 
-    public CrowdRemoteException(Throwable cause) {
+    public CrowdSyncException(Throwable cause) {
         super(cause);
     }
 

@@ -24,4 +24,7 @@ public class CrowdLdapConstants {
     public static final String GROUP_ID_AT = SchemaConstants.CN_AT;
     public static final String USER_ID_AT = SchemaConstants.UID_AT;
 
+    public static final String MEMBER_AT = "member";
+    public static final String MEMBEROF_AT = "memberof";
+
 }

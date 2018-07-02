@@ -50,8 +50,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CrowdLdapPartition extends AbstractPartition {
 
-    private final CrowdLdapGroupRepository groupRepository;
-    private final CrowdLdapUserRepository userRepository;
+    private final CrowdLdapRepository crowdLdapRepository;
 
     private final CrowdLdapFilter crowdLdapFilter;
 
@@ -75,13 +74,11 @@ public class CrowdLdapPartition extends AbstractPartition {
 
 
     public CrowdLdapPartition(CrowdLdapProperties crowdLdapProperties,
-                              CrowdLdapGroupRepository groupRepository,
-                              CrowdLdapUserRepository userRepository,
+                              CrowdLdapRepository crowdLdapRepository,
                               CrowdLdapFilter crowdLdapFilter,
                               DirectoryService directoryService) throws LdapInvalidDnException {
 
-        this.groupRepository = groupRepository;
-        this.userRepository = userRepository;
+        this.crowdLdapRepository = crowdLdapRepository;
         this.crowdLdapFilter = crowdLdapFilter;
         this.directoryService = directoryService;
         setId("crowd");
@@ -94,6 +91,7 @@ public class CrowdLdapPartition extends AbstractPartition {
     void init() throws Exception {
         this.initialize();
         directoryService.addPartition(this);
+        crowdLdapRepository.sync();
     }
 
 
@@ -184,7 +182,8 @@ public class CrowdLdapPartition extends AbstractPartition {
             DN groupDn = lookupDn.getSuffix(this.groupsEntry.getDn().size());
             if (groupDn.size() == 1) {
                 // find group by id
-                return this.groupRepository.findOne(groupDn.getRdn());
+                return this.crowdLdapRepository.findGroupEntryById(groupDn.getRdn())
+                        .orElse(null);
             }
         }
         // lookup user
@@ -192,7 +191,8 @@ public class CrowdLdapPartition extends AbstractPartition {
             DN userDn = lookupDn.getSuffix(this.usersEntry.getDn().size());
             if (userDn.size() == 1) {
                 // find user by id
-                return this.userRepository.findOne(userDn.getRdn());
+                return this.crowdLdapRepository.findUserEntryById(userDn.getRdn())
+                        .orElse(null);
             }
         }
         // nothing here
@@ -211,8 +211,8 @@ public class CrowdLdapPartition extends AbstractPartition {
                     searchResults.add(this.domainEntry);
                     break;
                 case SUBTREE:
-                    searchResults.addAll(this.groupRepository.findAll());
-                    searchResults.addAll(this.userRepository.findAll());
+                    searchResults.addAll(this.crowdLdapRepository.findAllGroupEntries());
+                    searchResults.addAll(this.crowdLdapRepository.findAllUserEntries());
                 case ONELEVEL:
                     searchResults.add(this.groupsEntry);
                     searchResults.add(this.usersEntry);
@@ -227,7 +227,7 @@ public class CrowdLdapPartition extends AbstractPartition {
                     break;
                 case SUBTREE:
                 case ONELEVEL:
-                    searchResults.addAll(this.groupRepository.findAll());
+                    searchResults.addAll(this.crowdLdapRepository.findAllGroupEntries());
                     break;
             }
         }
@@ -239,7 +239,7 @@ public class CrowdLdapPartition extends AbstractPartition {
                     break;
                 case SUBTREE:
                 case ONELEVEL:
-                    searchResults.addAll(this.userRepository.findAll());
+                    searchResults.addAll(this.crowdLdapRepository.findAllUserEntries());
                     break;
             }
         }

@@ -3,4 +3,5 @@ spring:
     name: crowd-ldap-server
   cloud:
     config:
-      uri: http://config:8888
+      enabled: false
+      fail-fast: true

@@ -25,6 +25,24 @@
         </license>
     </licenses>
 
+    <organization>
+        <name>AMT GROUP</name>
+        <url>http://www.amt.ru/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Vitaly Ogoltsov</name>
+            <url>https://github.com/vogoltsov</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/amtgroup/crowd-ldap-server</url>
+        <connection>scm:git:git://github.com/amtgroup/crowd-ldap-server.git</connection>
+        <developerConnection>scm:git:git://github.com/amtgroup/crowd-ldap-server.git</developerConnection>
+    </scm>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

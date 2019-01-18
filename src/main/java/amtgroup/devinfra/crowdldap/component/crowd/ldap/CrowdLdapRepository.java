@@ -52,7 +52,7 @@ class CrowdLdapRepository {
                                CrowdClient crowdClient,
                                DirectoryService directoryService) throws LdapInvalidDnException {
 
-        this.groupsDn = new DN(crowdLdapProperties.getSuffix()).add(CrowdLdapConstants.USERS_RDN);
+        this.groupsDn = new DN(crowdLdapProperties.getSuffix()).add(CrowdLdapConstants.GROUPS_RDN);
         this.usersDn = new DN(crowdLdapProperties.getSuffix()).add(CrowdLdapConstants.USERS_RDN);
         this.crowdClient = crowdClient;
         this.directoryService = directoryService;

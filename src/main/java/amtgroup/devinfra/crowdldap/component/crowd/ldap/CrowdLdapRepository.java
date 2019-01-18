@@ -1,4 +1,4 @@
-package amtgroup.devinfra.crowdldap.component.crowdldap;
+package amtgroup.devinfra.crowdldap.component.crowd.ldap;
 
 import amtgroup.devinfra.crowdldap.component.crowd.config.CrowdLdapProperties;
 import amtgroup.devinfra.crowdldap.component.crowd.exception.CrowdLdapException;

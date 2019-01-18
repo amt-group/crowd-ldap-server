@@ -5,3 +5,10 @@ spring:
     config:
       enabled: false
       fail-fast: true
+
+logging:
+  level:
+    root: warn
+    org.apache.directory: warn
+    amtgroup: info
+  appenders: 'CONSOLE'

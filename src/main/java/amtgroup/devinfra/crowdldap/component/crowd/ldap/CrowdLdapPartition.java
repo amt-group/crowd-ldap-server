@@ -243,6 +243,24 @@ public class CrowdLdapPartition extends AbstractPartition {
                     break;
             }
         }
+        // single group entry
+        if (StringUtils.equalsIgnoreCase(searchDn.getPrefix(searchDn.size() - 1).getName(), this.groupsEntry.getDn().getName())) {
+            switch (searchContext.getScope()) {
+                case OBJECT:
+                    this.crowdLdapRepository.findGroupEntryById(searchDn.getRdn())
+                            .ifPresent(searchResults::add);
+                    break;
+            }
+        }
+        // single user entry
+        if (StringUtils.equalsIgnoreCase(searchDn.getPrefix(searchDn.size() - 1).getName(), this.usersEntry.getDn().getName())) {
+            switch (searchContext.getScope()) {
+                case OBJECT:
+                    this.crowdLdapRepository.findUserEntryById(searchDn.getRdn())
+                            .ifPresent(searchResults::add);
+                    break;
+            }
+        }
         // filter results
         Optional<Predicate<ServerEntry>> filter = crowdLdapFilter.of(searchContext.getFilter());
         if (filter.isPresent()) {
